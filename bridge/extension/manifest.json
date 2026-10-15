@@ -1,0 +1,45 @@
+{
+  "manifest_version": 3,
+  "name": "Modem Bridge",
+  "version": "1.0",
+  "description": "Bridges WebRTC audio to a Bell 103 modem over WebSocket",
+  "permissions": [
+    "activeTab"
+  ],
+  "host_permissions": [
+    "https://www.textnow.com/*",
+    "https://voice.google.com/*",
+    "https://call2friends.com/*",
+    "https://www.call2friends.com/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.textnow.com/*",
+        "https://voice.google.com/*",
+        "https://call2friends.com/*",
+        "https://www.call2friends.com/*"
+      ],
+      "js": ["content.js"],
+      "run_at": "document_start"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["inject.js"],
+      "matches": [
+        "https://www.textnow.com/*",
+        "https://voice.google.com/*",
+        "https://call2friends.com/*",
+        "https://www.call2friends.com/*"
+      ]
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "Modem Bridge",
+    "default_popup": ""
+  }
+}
